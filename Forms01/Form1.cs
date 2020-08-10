@@ -18,11 +18,6 @@ namespace Forms01
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             cbFullList.Items.Add("Appel");
@@ -49,8 +44,8 @@ namespace Forms01
             }
 
             BindingList<User> gebruikers = new BindingList<User>();
-            cbVoornamen.DisplayMember = "Voornaam";
-            cbVoornamen.ValueMember = "Familienaam";
+            cbVoornamen.DisplayMember = "voornaam";
+            cbVoornamen.ValueMember = "familienaam";
 
             gebruikers.Add(new User("Dairo", "Demeulemeester"));
             gebruikers.Add(new User("Niels", "Verdru"));
@@ -65,6 +60,17 @@ namespace Forms01
         private void btnVoegToe_Click(object sender, EventArgs e)
         {
             lbMijnLijst.Items.Add(txtInput1.Text);
+            txtInput1.Text = "";
+            txtInput1.Focus();
+        }
+
+        private void txtInput1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnVoegToe_Click(sender, e);
+            }
+
         }
 
         private void btnVerwijder_Click(object sender, EventArgs e)
@@ -98,6 +104,8 @@ namespace Forms01
                 lbNamenLijst.Items.Add(name);
                 
             }
+            txtFilter.Text = "";
+            txtFilter.Focus();
 
         }
 
@@ -111,9 +119,9 @@ namespace Forms01
             MessageBox.Show(cbVoornamen.SelectedValue.ToString());
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void txtInput1_KeyPress(object sender, KeyPressEventArgs e)
         {
-
         }
+
     }
 }
